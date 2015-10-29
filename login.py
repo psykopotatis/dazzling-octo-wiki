@@ -20,8 +20,8 @@ class LoginPage(BaseHandler):
                 print('PASSWORD OK')
                 # Store user id in secure cookie
                 self.set_secure_cookie('userId', str(user.key().id()))
-                # Redirect to welcome page
-                self.redirect('/welcome')
+                # Redirect to index
+                self.redirect('/')
             else:
                 error = 'Error, username or password wrong.'
                 self.render_page(username, password, error)

@@ -28,7 +28,7 @@ class SignupPage(BaseHandler):
                 self.set_secure_cookie('userId', str(new_user.key().id()))
 
                 # 2. Redirect
-                self.redirect('/welcome')
+                self.redirect('/')
         else:
             error = 'Error, you need to fill in all values.'
             self.render_page(username, password, verify, email, error)

@@ -3,9 +3,11 @@
 {% block content %}
 <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
-    <li class="active">Welcome</li>
+    {% if user %}
+        <li><a href="_edit{{ page }}">Edit</a></li>
+    {% endif %}
 </ol>
 
-<p><strong>Hey {{ name }}!</strong> Welcome.</p>
+{{ content | safe }}
 
 {% endblock %}

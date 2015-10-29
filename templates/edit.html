@@ -1,0 +1,17 @@
+{% extends "/templates/base.html" %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Edit</li>
+    </ol>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" name="content" id="content" rows="14">{{ content }}</textarea>
+        </div>
+        <input type="hidden" name="page" id="page" value="{{ page }}">
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}

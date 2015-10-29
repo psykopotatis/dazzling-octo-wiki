@@ -32,3 +32,14 @@ class User(db.Model):
 
     def __str__(self):
         return 'User{id:%s, name:%s}' % (self.key().id(), self.name)
+
+
+class Wiki(db.Model):
+    page = db.StringProperty(required=True)
+    content = db.TextProperty(required=False)
+    created = db.DateTimeProperty(auto_now_add=True)
+    creator = db.ReferenceProperty(User)
+
+    @classmethod
+    def by_page(cls, page):
+        return cls.all().filter('page', page).get()

@@ -1,14 +1,17 @@
 import webapp2
-from index import IndexPage
+
 from signup import SignupPage
-from welcome import WelcomePage
 from login import LoginPage
 from logout import LogoutPage
+from edit import EditPage
+from wiki import WikiPage
+
+PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 
 app = webapp2.WSGIApplication([
-    (r'/', IndexPage),
     (r'/signup', SignupPage),
-    (r'/welcome', WelcomePage),
     (r'/login', LoginPage),
     (r'/logout', LogoutPage),
+    ('/_edit' + PAGE_RE, EditPage),
+    (PAGE_RE, WikiPage),
 ], debug=True)
