@@ -10,4 +10,10 @@
 
 {{ content | safe }}
 
+<div>
+    {% for wiki in wikis %}
+        <p><a href="{{ wiki.page }}">{{ wiki.page }}</a></p>
+    {% endfor %}
+</div>
+
 {% endblock %}

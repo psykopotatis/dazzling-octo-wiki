@@ -41,5 +41,9 @@ class Wiki(db.Model):
     creator = db.ReferenceProperty(User)
 
     @classmethod
-    def by_page(cls, page):
+    def get_by_page(cls, page):
         return cls.all().filter('page', page).get()
+
+    @classmethod
+    def get_all(cls):
+        return cls.all()

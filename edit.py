@@ -3,7 +3,7 @@ from base import BaseHandler
 
 class EditPage(BaseHandler):
     def get(self, page):
-        wiki = Wiki.by_page(page)
+        wiki = Wiki.get_by_page(page)
         content = wiki.content if wiki else ''
         self.render('/templates/edit.html', page=page, content=content)
 
@@ -11,7 +11,7 @@ class EditPage(BaseHandler):
         content = self.request.get('content')
         creator = self.user
 
-        wiki = Wiki.by_page(page)
+        wiki = Wiki.get_by_page(page)
         if wiki:
             wiki.content = content
             wiki.put()
