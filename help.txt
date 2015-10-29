@@ -1,0 +1,8 @@
+# Start server
+/home/ingemar.hjalmstad/bin/google_appengine/dev_appserver.py app.yaml
+
+# Deploy live
+/home/ingemar.hjalmstad/bin/google_appengine/appcfg.py -A dazzling-octo-wiki update app.yaml
+
+# If logged in to another Google acount, add --no_cookies
+/home/ingemar.hjalmstad/bin/google_appengine/appcfg.py -A dazzling-octo-wiki --no_cookies update app.yaml
