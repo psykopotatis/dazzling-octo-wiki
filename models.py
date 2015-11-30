@@ -36,14 +36,43 @@ class User(db.Model):
 
 class Wiki(db.Model):
     page = db.StringProperty(required=True)
-    content = db.TextProperty(required=False)
-    created = db.DateTimeProperty(auto_now_add=True)
-    creator = db.ReferenceProperty(User)
 
     @classmethod
     def get_by_page(cls, page):
         return cls.all().filter('page', page).get()
 
     @classmethod
+    def get_latest(cls, wiki):
+        if wiki:
+            return wiki.versionedwikicontent_set.order('-version')[0]
+        else:
+            return None
+
+    @classmethod
+    def get_version(cls, wiki, version):
+        if wiki:
+            return wiki.versionedwikicontent_set.filter('version', version).get()
+        else:
+            return None
+
+    @classmethod
+    def get_all_versions(cls, wiki):
+        return wiki.versionedwikicontent_set.order('version')
+
+    @classmethod
     def get_all(cls):
         return cls.all()
+
+class VersionedWikiContent(db.Model):
+    version = db.IntegerProperty(required=True)
+    content = db.TextProperty(required=False)
+    created = db.DateTimeProperty(auto_now_add=True)
+    creator = db.ReferenceProperty(User)
+    wiki = db.ReferenceProperty(Wiki)
+
+    def get_url(self):
+        return '%s?v=%s' % (self.wiki.page, self.version)
+
+    def get_edit_url(self):
+        return '/_edit%s?v=%s' % (self.wiki.page, self.version)
+

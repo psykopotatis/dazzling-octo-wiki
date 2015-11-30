@@ -4,16 +4,14 @@
 <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
     {% if user %}
-        <li><a href="_edit{{ page }}">Edit</a></li>
+        {% if version %}
+            <span class="pull-right"><a href="_edit{{ page }}?v={{ version }}">Edit</a> | <a href="_history{{ page }}">History</a></span>
+        {% else %}
+            <span class="pull-right"><a href="_edit{{ page }}">Edit</a> | <a href="_history{{ page }}">History</a></span>
+        {% endif %}
     {% endif %}
 </ol>
 
 {{ content | safe }}
-
-<div>
-    {% for wiki in wikis %}
-        <p><a href="{{ wiki.page }}">{{ wiki.page }}</a></p>
-    {% endfor %}
-</div>
 
 {% endblock %}

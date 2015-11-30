@@ -1,0 +1,32 @@
+{% extends "/templates/base.html" %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+    </ol>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Created</th>
+                <th>Version</th>
+                <th>Content</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for wiki_version in wiki_versions %}
+                <tr>
+                    <td>{{ wiki_version.created }}</td>
+                    <td>{{ wiki_version.version }}</td>
+                    <td>{{ wiki_version.content }}</td>
+                    <td><a href="{{ wiki_version.get_url() }}">View</a></td>
+                    <td><a href="{{ wiki_version.get_edit_url() }}">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
