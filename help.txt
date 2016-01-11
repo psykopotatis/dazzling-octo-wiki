@@ -5,4 +5,4 @@
 /home/ingemar.hjalmstad/bin/google_appengine/appcfg.py -A dazzling-octo-wiki update app.yaml
 
 # If logged in to another Google acount, add --no_cookies
-/home/ingemar.hjalmstad/bin/google_appengine/appcfg.py -A dazzling-octo-wiki --no_cookies update app.yaml
+/home/ingemar.hjalmstad/bin/google_appengine/appcfg.py -A plexiform-plane-116209 --no_cookies update app.yaml
